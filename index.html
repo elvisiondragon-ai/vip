@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eL Vision Group — VIP 1:1 Manifestation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #b8963e;
+    --gold-light: #d4af6a;
+    --gold-pale: #f5edd8;
+    --black: #0d0d0d;
+    --off-white: #faf8f4;
+    --warm-grey: #6b6560;
+    --line: rgba(184,150,62,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-white);
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #fff9ef 0%, #faf8f4 60%, #f0e8d8 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 20%, rgba(184,150,62,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,150,62,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Decorative concentric arcs */
+  .arc-bg {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    pointer-events: none;
+    opacity: 0.12;
+  }
+  .arc-bg circle { fill: none; stroke: var(--gold); }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5vw;
+    position: relative;
+    z-index: 10;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .nav-badge {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    border: 1px solid var(--line);
+    padding: 0.35rem 0.85rem;
+    border-radius: 40px;
+  }
+
+  .hero-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 5vw 0;
+    position: relative;
+    z-index: 5;
+    max-width: 860px;
+  }
+
+  .vip-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .vip-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.18;
+    color: var(--black);
+    margin-bottom: 2rem;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-style: italic;
+    color: var(--warm-grey);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+    border-left: 2px solid var(--gold-light);
+    padding-left: 1.4rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1rem 2.4rem;
+    border-radius: 2px;
+    transition: background 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 24px rgba(184,150,62,0.25);
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .btn-primary:hover { background: #9d7e2f; box-shadow: 0 6px 32px rgba(184,150,62,0.35); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1rem 2.4rem;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.18);
+    transition: border-color 0.25s, color 0.25s;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    padding: 1.8rem 5vw;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 5;
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 5vw; }
+  .section-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--warm-grey);
+    max-width: 560px;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 5vw;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-frame {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #e8dcc8, #d4c5a9);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .about-img-frame::after {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(184,150,62,0.4);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+  .about-placeholder-icon {
+    font-size: 5rem;
+    opacity: 0.3;
+  }
+  .about-gold-tag {
+    position: absolute;
+    bottom: -1.2rem;
+    right: -1.2rem;
+    background: var(--gold);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+  }
+
+  .about-text .section-sub { max-width: 100%; }
+  .about-values {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .about-value {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--warm-grey);
+  }
+  .about-value-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  /* ── VIP PILLARS ── */
+  .pillars-bg {
+    background: linear-gradient(135deg, #1a1510 0%, #0d0d0d 100%);
+    color: #fff;
+  }
+  .pillars-bg .section-title { color: #fff; }
+  .pillars-bg .section-sub { color: rgba(255,255,255,0.55); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin-top: 3.5rem;
+    border: 2px solid rgba(184,150,62,0.15);
+  }
+  .pillar-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(184,150,62,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .pillar-card:hover { background: rgba(184,150,62,0.06); }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 0.6rem;
+  }
+  .pillar-desc { font-size: 0.8rem; line-height: 1.8; color: rgba(255,255,255,0.5); }
+
+  /* ── WHAT I SOLVE ── */
+  .solve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .solve-card {
+    border: 1px solid var(--line);
+    padding: 2rem 1.5rem;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .solve-card:hover { box-shadow: 0 8px 40px rgba(184,150,62,0.12); transform: translateY(-2px); }
+  .solve-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .solve-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+  }
+  .solve-desc { font-size: 0.78rem; color: var(--warm-grey); line-height: 1.7; }
+
+  /* Video testimony */
+  .video-block {
+    margin-top: 3.5rem;
+    border: 1px solid var(--line);
+    padding: 2.5rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .video-thumb {
+    width: 200px;
+    height: 120px;
+    background: linear-gradient(135deg, #1a1510, #2c2218);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .video-thumb::after {
+    content: '▶';
+    font-size: 2rem;
+    color: var(--gold);
+    position: relative;
+    z-index: 2;
+  }
+  .video-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(184,150,62,0.2), transparent 70%);
+  }
+  .video-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .video-text p { font-size: 0.82rem; color: var(--warm-grey); line-height: 1.7; }
+  .video-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--gold-pale);
+    color: var(--gold);
+    border: 1px solid rgba(184,150,62,0.3);
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 0.7rem;
+  }
+
+  /* ── PROCESS ── */
+  .process-bg { background: var(--gold-pale); }
+  .steps-list {
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .step-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(184,150,62,0.2);
+    align-items: start;
+    animation: fadeUp 0.5s ease both;
+  }
+  .step-row:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(184,150,62,0.3);
+    line-height: 1;
+    text-align: right;
+  }
+  .step-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 0.4rem;
+  }
+  .step-content p { font-size: 0.82rem; color: var(--warm-grey); line-height: 1.8; }
+  .step-content .price-note {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── PAYMENT ── */
+  .payment-grid {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    align-items: center;
+  }
+  .pay-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .pay-paypal { background: #003087; color: #fff; }
+  .pay-paypal:hover { background: #002070; }
+  .pay-btc { background: #F7931A; color: #fff; }
+  .pay-btc:hover { background: #e07f0a; }
+
+  /* ── REVIEWS ── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 2rem;
+    border-radius: 2px;
+    position: relative;
+  }
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 0.5rem;
+    left: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+  }
+  .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .review-text { font-size: 0.85rem; line-height: 1.8; color: var(--warm-grey); margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--black); }
+  .review-role { font-size: 0.65rem; color: var(--warm-grey); margin-top: 0.2rem; }
+
+  /* ── FAQ ── */
+  .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  details {
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 0;
+  }
+  details:first-child { border-top: 1px solid var(--line); }
+  summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--black);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--gold);
+    transition: transform 0.25s;
+    font-weight: 300;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--warm-grey);
+    margin-top: 1rem;
+    max-width: 700px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-bg {
+    background: linear-gradient(135deg, #1a1510 0%, #0d0d0d 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .contact-bg .section-title { color: #fff; }
+  .contact-bg .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; text-align: center; }
+  .contact-bg .section-eyebrow { justify-content: center; }
+  .contact-bg .section-eyebrow::before { display: none; }
+
+  .contact-buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .contact-wa {
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 2.2rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .contact-wa:hover { background: #1ebe5b; }
+
+  .contact-divider {
+    border: none;
+    border-top: 1px solid rgba(184,150,62,0.2);
+    margin: 2.5rem auto;
+    max-width: 300px;
+  }
+  .payment-section-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080806;
+    color: rgba(255,255,255,0.3);
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+  footer .logo { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.2em; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-body > * { animation: fadeUp 0.7s ease both; }
+  .hero-body > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-body > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-body > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-body > *:nth-child(4) { animation-delay: 0.35s; }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 5vw; }
+    .hero-body { padding-top: 1rem; }
+    .solve-grid { grid-template-columns: 1fr 1fr; }
+    .video-thumb { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <svg class="arc-bg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="350" cy="350" r="320" stroke-width="1"/>
+    <circle cx="350" cy="350" r="270" stroke-width="0.7"/>
+    <circle cx="350" cy="350" r="210" stroke-width="0.5"/>
+    <circle cx="350" cy="350" r="140" stroke-width="0.4"/>
+    <circle cx="350" cy="350" r="70"  stroke-width="0.3"/>
+  </svg>
+
+  <nav>
+    <span class="nav-logo">eL Vision Group</span>
+    <span class="nav-badge">VIP Access Only</span>
+  </nav>
+
+  <div class="hero-body">
+    <p class="vip-label">Exclusive · 1:1 · High Performers Only</p>
+    <h1 class="hero-headline">
+      If I Guarantee to Solve<br/>
+      Your Finance Problem—<br/>
+      <em>Will You Take Action Now?</em>
+    </h1>
+    <p class="hero-motto">
+      Through manifestation mastery, meditation, and a personalised 90-day workbook—
+      designed exclusively for those who refuse to stay stuck.
+    </p>
+    <div class="hero-cta">
+      <a href="#process" class="btn-primary">Book a Discovery Call</a>
+      <a href="#about" class="btn-ghost">Meet eL Reyzandra</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Years in Practice</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">90</span>
+      <span class="stat-label">Days to Transformation</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Personalised System</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1:1</span>
+      <span class="stat-label">Your Dedicated Access</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ════ ABOUT ════ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-frame">
+        <span class="about-placeholder-icon">🧘</span>
+        <span class="about-gold-tag">eL Reyzandra · Founder</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="section-eyebrow">About Your Guide</p>
+      <h2 class="section-title">Leading Meditation &amp; Manifestation Since 2010</h2>
+      <p class="section-sub">
+        I am <strong>eL Reyzandra</strong>, Founder of <strong>eL Vision Group</strong>. For over 15 years I have pioneered a unique methodology that weaves together elemental synergy—the duality of chaos and tranquility—to unlock breakthroughs that conventional coaching simply cannot reach.
+      </p>
+      <p class="section-sub" style="margin-top:1rem;">
+        My work is not therapy. It is not generic self-help. It is a precisely calibrated system built around <em>you</em>—your energy, your blocks, your goals.
+      </p>
+      <div class="about-values">
+        <div class="about-value"><div class="about-value-dot"></div><span><strong>Personal Access</strong> — You get direct, dedicated access to me throughout the 90 days.</span></div>
+        <div class="about-value"><div class="about-value-dot"></div><span><strong>Custom System</strong> — Every element of your programme is personalised to your exact situation.</span></div>
+        <div class="about-value"><div class="about-value-dot"></div><span><strong>Dedicated Energy</strong> — My time and focus belong to you—and only you—during your journey.</span></div>
+        <div class="about-value"><div class="about-value-dot"></div><span><strong>Elemental Synergy</strong> — The method harmonises chaos and tranquility to create lasting alignment.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ════ VIP PILLARS ════ -->
+<section class="pillars-bg">
+  <p class="section-eyebrow" style="color:var(--gold-light);">Why VIP 1:1</p>
+  <h2 class="section-title">This Is Not a Course.<br/>This Is a Private Experience.</h2>
+  <p class="section-sub">Four pillars that set this apart from everything else you have tried.</p>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon">🔑</div>
+      <div class="pillar-title">Personal Access to Me</div>
+      <p class="pillar-desc">Direct communication. No assistants. No filtered responses. You reach me—and I show up for you.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">⚙️</div>
+      <div class="pillar-title">Custom Personalised System</div>
+      <p class="pillar-desc">Your workbook, your rituals, your schedule. Built from scratch around your unique problem and goal.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">⚡</div>
+      <div class="pillar-title">Dedicated Energy &amp; Time</div>
+      <p class="pillar-desc">My full energetic and strategic focus is allocated exclusively to you for the duration of your programme.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🌀</div>
+      <div class="pillar-title">Mind-Body Alignment</div>
+      <p class="pillar-desc">The key is alignment. Your mind, your body, and your goal—synchronised into one coherent force.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHAT I SOLVE ════ -->
+<section id="solve">
+  <p class="section-eyebrow">Areas of Transformation</p>
+  <h2 class="section-title">What We Solve Together</h2>
+  <p class="section-sub">These are the four domains where energy blocks create the greatest suffering—and the greatest opportunity.</p>
+
+  <div class="solve-grid">
+    <div class="solve-card">
+      <div class="solve-icon">💰</div>
+      <div class="solve-title">Finance</div>
+      <p class="solve-desc">Breaking through income ceilings, abundance blocks, fear of wealth, and self-sabotage patterns that keep high performers financially stuck.</p>
+    </div>
+    <div class="solve-card">
+      <div class="solve-icon">💞</div>
+      <div class="solve-title">Romance &amp; Relationship</div>
+      <p class="solve-desc">Dissolving attachment wounds, unhealthy patterns, and energy misalignments that prevent deep, lasting connection.</p>
+    </div>
+    <div class="solve-card">
+      <div class="solve-icon">👨‍👩‍👧</div>
+      <div class="solve-title">Family Dynamics</div>
+      <p class="solve-desc">Healing generational blocks, restoring harmony, and realigning family energy so you can lead from a place of peace, not conflict.</p>
+    </div>
+    <div class="solve-card">
+      <div class="solve-icon">🌿</div>
+      <div class="solve-title">Health &amp; Vitality</div>
+      <p class="solve-desc">Supporting recovery, vitality, and cellular alignment through deep energetic and meditative practice alongside conventional care.</p>
+    </div>
+  </div>
+
+  <!-- Video Testimony -->
+  <div class="video-block">
+    <div class="video-thumb"></div>
+    <div class="video-text">
+      <span class="video-tag">Real Testimony · Health</span>
+      <h4>Brain Cancer Stage 4 — And a Road to Recovery</h4>
+      <p>This is one of the most powerful testimonies from our community. A client diagnosed with Stage 4 brain cancer used our manifestation and meditation protocol alongside medical treatment—and their journey is a testament to what becomes possible when the mind, body, and energy align.<br/><br/><em>Watch the full story below.</em></p>
+      <a href="#contact" class="btn-primary" style="margin-top:1.2rem; display:inline-block;">Request Access to Full Video</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ════ PROCESS ════ -->
+<section class="process-bg" id="process">
+  <p class="section-eyebrow">How It Works</p>
+  <h2 class="section-title">Your Journey — Step by Step</h2>
+  <p class="section-sub">A clear, structured path from where you are now to where you are meant to be.</p>
+
+  <div class="steps-list">
+    <div class="step-row">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Identify Your Problem</h4>
+        <p>We begin with clarity. You share the specific block—financial, relational, health, or family—that has kept you in a loop. No vagueness. No generic answers. We locate the root.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Book a Discovery Call</h4>
+        <p>A private call with me directly. We assess the depth of the challenge and determine whether this programme is the right fit for where you are now.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>30-Minute Demo Manifestation Session</h4>
+        <p>Experience the method first-hand before committing. A live, guided manifestation session designed around your problem—so you can feel whether this resonates.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Investment &amp; Programme Start</h4>
+        <p>If the method suits you, we structure your investment. Payment is split into two: the first instalment upon commencement, and a success fee after 90 days upon achieving your stated goal.</p>
+        <span class="price-note">Investment: USD $3,000 – $20,000 for 90 Days · Based on Problem Complexity</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h4>Your Custom Personal Workbook</h4>
+        <p>Receive a bespoke daily workbook covering your meditation practice, movement and sport protocol, relaxation rituals, and professional work ethics—all calibrated to your goal.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">06</div>
+      <div class="step-content">
+        <h4>Alignment — The Key to Everything</h4>
+        <p>The entire 90-day journey moves toward one outcome: complete alignment between what you want, who you are, and how you show up every day. Mind and body unified with your goal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ════ REVIEWS ════ -->
+<section id="reviews">
+  <p class="section-eyebrow">Client Experiences</p>
+  <h2 class="section-title">Words From Those Who Chose to Act</h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I had been stuck at the same income level for four years. Within 60 days of the programme, I closed a deal that tripled my annual revenue. The workbook discipline and eL's energy work shifted something fundamental in me.</p>
+      <div class="review-author">Marcus T.</div>
+      <div class="review-role">CEO · Fintech Startup · Singapore</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I was sceptical. I had tried therapy, coaching, and every online course available. This was completely different. The personalisation was extraordinary—my workbook felt like it was written by someone who had known me for years.</p>
+      <div class="review-author">Priya S.</div>
+      <div class="review-role">Investment Director · Jakarta</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">After my diagnosis I felt helpless. The meditation protocol alongside my treatment gave me a sense of agency and calm I hadn't experienced before. I genuinely believe it contributed to my recovery journey.</p>
+      <div class="review-author">David L.</div>
+      <div class="review-role">Entrepreneur · Health Recovery</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">My relationship with my family had broken down over years of conflict. Three months of working with eL restructured not just my mindset, but the entire dynamic. My children noticed the change before I did.</p>
+      <div class="review-author">Amara K.</div>
+      <div class="review-role">Executive · Kuala Lumpur</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">The success fee model told me everything I needed to know. eL is invested in your outcome—not just your payment. That accountability changed how I showed up every single day of those 90 days.</p>
+      <div class="review-author">Jonathan R.</div>
+      <div class="review-role">Managing Partner · Law Firm · Dubai</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I spent years in loops of self-sabotage in relationships. The elemental synergy framework helped me see patterns I had been completely blind to. I am now in the healthiest relationship of my life.</p>
+      <div class="review-author">Rina M.</div>
+      <div class="review-role">Creative Director · Bali</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ════ FAQ ════ -->
+<section id="faq">
+  <p class="section-eyebrow">Frequently Asked</p>
+  <h2 class="section-title">Questions Answered</h2>
+  <div class="faq-list">
+
+    <details>
+      <summary>This investment feels beyond my current budget. Is there flexibility?</summary>
+      <p>Let me offer you a reframe. As a high performer, you already understand that your most expensive asset is not money—it is <em>time</em>. Every month you remain stuck in the same financial, relational, or health loop is time you will never recover. A thousand dollars means nothing compared to the compounded cost of another year—or another decade—spent suffering in the same pattern. The investment is calibrated to your problem complexity precisely because we are solving for irreversible transformation, not temporary relief. The only question worth asking is: what is another year of being stuck truly costing you?</p>
+    </details>
+
+    <details>
+      <summary>What exactly is the success fee structure?</summary>
+      <p>The total investment is divided into two payments. The first instalment is made at the start of the programme. The second—the success fee—is only due after the 90 days, upon achieving the transformation goal we defined together at the outset. This structure reflects my commitment to your outcome, not merely your enrolment.</p>
+    </details>
+
+    <details>
+      <summary>Does this work alongside medical treatment or conventional therapy?</summary>
+      <p>Absolutely. The eL Vision programme is not a replacement for medical or psychological care—it is a powerful complement. Many clients have experienced significant breakthroughs while continuing conventional treatment. The manifestation and meditation practices support your nervous system, mindset, and energetic alignment in ways that enhance every other form of support you are receiving.</p>
+    </details>
+
+    <details>
+      <summary>How is this different from other manifestation or coaching programmes?</summary>
+      <p>Three things set this apart entirely. First, this is a private 1:1 experience—not a group programme or a course. Second, the system is custom-built for you—your workbook, your rituals, your protocol. Third, I work with elemental synergy methodology that most practitioners have never encountered: the structured interplay of chaos and tranquility as catalysts for transformation. There is no template here. There is only your work, your goal, and my dedicated energy.</p>
+    </details>
+
+    <details>
+      <summary>How do I know if I am ready for this?</summary>
+      <p>If you are reading this page, you are likely already past the point of wondering whether something needs to change—you know it does. The question is whether you are ready to commit fully rather than continue researching indefinitely. The demo session exists precisely for this: experience the method before you commit. That is your answer.</p>
+    </details>
+
+    <details>
+      <summary>Is this available internationally?</summary>
+      <p>Yes. The programme is conducted remotely and is available to high performers worldwide. All sessions are conducted via private video call, and the workbook is delivered digitally. Payment is accepted via PayPal or Bitcoin internationally.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ════ CONTACT / CTA ════ -->
+<section class="contact-bg" id="contact">
+  <p class="section-eyebrow">Begin Your Transformation</p>
+  <h2 class="section-title">Ready to Take Action?</h2>
+  <p class="section-sub">
+    The first step costs nothing but your willingness to reach out. Contact me directly and we will schedule your discovery call at a time that works for you.
+  </p>
+
+  <div class="contact-buttons">
+    <a href="https://wa.me/62895325633487" target="_blank" class="contact-wa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp · Book a Call
+    </a>
+  </div>
+
+  <hr class="contact-divider" />
+  <p class="payment-section-title">Secure Payment Options</p>
+
+  <div class="payment-grid" style="justify-content:center;">
+    <a href="https://paypal.com" target="_blank" class="pay-btn pay-paypal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+      Pay via PayPal
+    </a>
+    <a href="bitcoin:?label=eL+Vision+Group" class="pay-btn pay-btc">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.975.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.406-.614.314.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.165c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.257 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z"/></svg>
+      Pay via Bitcoin
+    </a>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <span class="logo">eL Vision Group</span>
+  <span>© 2026 eL Reyzandra · All Rights Reserved</span>
+  <span>Leading Manifestation · Elements Synergy · Chaos &amp; Tranquility</span>
+</footer>
+
+</body>
+</html>
