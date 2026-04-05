@@ -1320,11 +1320,15 @@
       }
     };
 
-    function setFocus(focus) {
+    function setFocus(focus, clicked = false) {
       document.body.className = focus;
 
       // Update URL shorthand without reload
       window.history.replaceState({}, '', `?${focus}`);
+
+      // Hide bar if a focus is selected (either via load param or click)
+      const hasParamOrClicked = window.location.search.length > 1 || clicked;
+      document.getElementById('focusBar').style.display = hasParamOrClicked ? 'none' : 'flex';
 
       // Update tab states
       document.querySelectorAll('.focus-tab').forEach(t => {
