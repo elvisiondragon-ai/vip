@@ -456,44 +456,69 @@
       color: var(--muted);
     }
 
-    /* ── VIDEO BLOCK ── */
-    .video-wrap {
-      margin-top: 2rem;
+    .video-grid {
       display: flex;
-      gap: 2rem;
-      align-items: center;
       flex-wrap: wrap;
-      padding: 2rem;
-      background: var(--card);
-      border: 1px solid var(--line);
+      gap: 1.5rem;
+      margin-top: 2rem;
+      justify-content: center;
     }
 
-    .video-thumb {
-      width: 180px;
-      height: 110px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--dark-bg), var(--dark-accent));
+    .video-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      padding: 1rem;
+      width: 100%;
+      max-width: 280px; /* Mobile size */
+      position: relative;
+    }
+
+    .video-item-top {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
       border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .video-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      z-index: 5;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
-    .video-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%);
+    .play-overlay svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      margin-left: 4px;
     }
 
-    .video-play {
-      font-size: 1.8rem;
-      color: var(--accent-light);
-      position: relative;
-      z-index: 2;
+    .video-item.playing .play-overlay {
+      opacity: 0;
     }
 
     .video-info h4 {
@@ -1026,20 +1051,9 @@
       </div>
     </div>
 
-    <!-- Video -->
-    <div class="video-wrap" id="videoWrap">
-      <div class="video-thumb">
-        <div class="video-play">▶</div>
-      </div>
-      <div class="video-info">
-        <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;"
-          id="videoTag">Testimony · Finance Transformation</p>
-        <h4 id="videoTitle">Watch: From Revenue Stagnation to Breakthrough</h4>
-        <p id="videoDesc">This short documentary follows one client's 90-day journey—from identifying the subconscious
-          block to the moment of financial realignment. No scripts. No editing. Real process, real result.</p>
-        <a href="#contact" class="btn-primary" style="margin-top:1rem;display:inline-block;font-size:0.65rem;">Request
-          Full Access</a>
-      </div>
+    <!-- Video Section -->
+    <div id="videoContainer" class="video-grid">
+      <!-- Injected by JS -->
     </div>
   </section>
 
@@ -1082,8 +1096,28 @@
   </section>
 
   <!-- ════════════════════════════════
-     PROCESS
+     THE KNOWLEDGE — Inside the method
 ════════════════════════════════ -->
+  <section id="methodology">
+    <p class="eyebrow" id="methodEyebrow">The Architecture of the Miraculous</p>
+    <h2 class="sec-title" id="methodTitle">Inside the Method</h2>
+    <p class="sec-sub" id="methodSub">Why "Impossible" results—like Arif's recovery—are not a matter of luck, but a matter of precision alignment.</p>
+
+    <div class="pillars" style="border: 1px solid var(--line); margin-top: 3rem;">
+      <div class="pillar">
+        <div class="pillar-t" style="font-weight: 600; font-size: 0.9rem; color: var(--accent);">01. Somatic Recalibration</div>
+        <p class="pillar-d" style="color: var(--muted); font-size: 0.78rem;">Illness and stagnation are physical shadows of a system trapped in 'Survival Frequency.' We use precision breathwork to force the nervous system into a deep Regenerative state where repair can finally exceed damage.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-t" style="font-weight: 600; font-size: 0.9rem; color: var(--accent);">02. Identity Shifting</div>
+        <p class="pillar-d" style="color: var(--muted); font-size: 0.78rem;">We don't 'fight' the problem. We build the version of 'You' that is incompatible with the problem. By updating the subconscious identity code, the biological and financial results follow naturally.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-t" style="font-weight: 600; font-size: 0.9rem; color: var(--accent);">03. Elemental Synergy</div>
+        <p class="pillar-d" style="color: var(--muted); font-size: 0.78rem;">Using Chaos and Tranquility as tools. We prepare the 'fertile soil' so that any action or medical treatment becomes 10x more effective. Master the frequency, and the results arrive without the struggle.</p>
+      </div>
+    </div>
+  </section>
   <section class="process-bg" id="process">
     <p class="eyebrow">How It Works</p>
     <h2 class="sec-title">The Journey — Step by Step</h2>
@@ -1206,6 +1240,15 @@
     </div>
   </section>
 
+  <!-- ── FLOATING WA WIDGET ── -->
+  <a href="#" id="floatingWA" target="_blank"
+    style="position: fixed; bottom: 2rem; right: 2rem; z-index: 999; background: #25D366; color: #fff; padding: 1rem; border-radius: 50%; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); display: flex; align-items: center; justify-content: center; transition: all 0.3s; text-decoration: none;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
   <footer>
     <span class="foot-logo">eL Vision Group</span>
     <span>© 2026 eL Reyzandra · All Rights Reserved</span>
@@ -1243,6 +1286,10 @@
           { stars: "★★★★★", text: "I was sceptical of anything that used the word manifestation. But the structure, the daily workbook, and the direct access to eL made this unlike anything I had tried. My revenue in month three was higher than my entire previous year.", name: "Jonathan R.", role: "Managing Partner · Dubai" },
           { stars: "★★★★★", text: "The success fee model told me everything I needed to know. eL is invested in your outcome—not just your payment. That single structure changed how I showed up every day of those 90 days.", name: "Priya S.", role: "Investment Director · Jakarta" },
         ],
+        videoItems: [
+          { tag: "The Proof · Absolute Alignment", title: "Defying Terminal Diagnosis", desc: "Even a Phase 1 builder like Arif can recalibrate to the Miraculous. If this is possible for biology, imagine what is possible for your wealth.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Interview · The Process", title: "Arif: The Miraculous Evidence", desc: "The documented shift from Stage 4 Brain Cancer to full recovery using the Alignment protocol.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
         faqs: [
           { q: "This feels beyond my budget right now.", a: "As a high performer, you already understand that your most expensive asset is not money—it is time. Every month you remain at the same income ceiling is compounded cost you will never recover. A few thousand dollars means nothing compared to another year—or another decade—of the same plateau. The investment is calibrated to complexity because we are solving for irreversible change, not temporary motivation." },
           { q: "How is this different from business coaching or therapy?", a: "Business coaching addresses strategy. Therapy addresses psychology. This addresses the energetic and subconscious architecture beneath both—the part that causes otherwise intelligent, capable people to self-sabotage or stagnate despite having all the right information. It is not a replacement for those disciplines. It operates at a different level." },
@@ -1253,35 +1300,35 @@
 
       health: {
         label: "Health · Recovery & Vitality",
-        caseTag: "Real Case Study · Health",
+        caseTag: "The Impossible Miracle · Stage 4 Cancer",
         headline: `If I Guarantee to Support Your Body's <em>Return to Life</em>—<br/><strong>Will You Take Action Now?</strong>`,
-        case: `"Diagnosed with Stage 4 brain cancer. Given a prognosis. Chose not to accept it as the final word. After 90 days of elemental meditation alongside medical treatment—the recovery journey that followed was documented."`,
+        case: `"Diagnosed with Stage 4 brain cancer. A medical impossibility. Chose not to accept the prognosis. After 90 days of elemental meditation and alignment—the transition to recovery left doctors speechless."`,
         priceRange: "$5k–$20k",
-        caseEyebrow: "Case Study · Health",
-        caseTitle: "A Diagnosis. A Decision. 90 Days.",
-        caseSub: "I do not claim to cure illness. I claim that the mind, breath, and energy—when aligned—create conditions the body cannot achieve alone. Here is the story of David.",
-        caseHeaderLabel: "Health · Stage 4 Brain Cancer · Recovery",
-        caseHeaderTitle: "Given a Prognosis. Refused It. And Recovered.",
+        caseEyebrow: "Case Study · Health Miracle",
+        caseTitle: "Stage 4 Brain Cancer. Recovered.",
+        caseSub: "I do not claim to cure illness. I claim that when you master the frequency of your biology, you create conditions for miracles. Here is the story of Arif.",
+        caseHeaderLabel: "Health · Terminal Diagnosis · Recovery",
+        caseHeaderTitle: "Given an Impossible Prognosis. Still Here. Fully Recovered.",
         colProblemTitle: "Stage 4 Brain Cancer",
-        colProblemText: "David was 44 when the diagnosis arrived. Stage 4 glioblastoma. His oncologist outlined treatment options but was candid about the statistical outlook. David was pursuing all conventional treatment—but felt the need to work at a level medicine alone could not reach.",
-        colMethodText: "We built a protocol around his treatment schedule: morning elemental meditation sessions timed to his lowest cortisol window, a personalised breathwork sequence to support immune function, and a manifestation practice specifically focused on cellular recovery and identity—who he was choosing to be regardless of what the scan said.",
-        colOutcomeTitle: "Alive. Documenting. Still Here.",
-        colOutcomeText: "Eighteen months after the initial prognosis, David continues his recovery. The tumour response exceeded his oncologist's statistical expectation. He credits the alignment work as the difference between surviving and choosing to live. His story is now documented on video for others facing similar diagnoses.",
-        videoTag: "Testimony · Health Recovery",
-        videoTitle: "Watch: Brain Cancer Stage 4 — The Recovery Story",
-        videoDesc: "David's journey is documented in full. From the moment of diagnosis, through the 90-day elemental meditation protocol, to the follow-up scan results that surprised his medical team. This is the video we are asked about most.",
+        colProblemText: "Arif was facing a terminal diagnosis. Stage 4 glioblastoma—one of the most aggressive forms of cancer. The medical outlook was bleak, but Arif committed to the 90-day alignment protocol as his final, most powerful decision.",
+        colMethodText: "We built a deep elemental recovery protocol: morning sessions timed to his body's internal clock, a personalised breathwork sequence to shift the biological frequency out of 'survival mode', and powerful identity manifestation work to anchor his reality to life, not the disease.",
+        colOutcomeTitle: "Alive. Recovered. The Miracle.",
+        colOutcomeText: "Arif did not just survive; he recovered. Follow-up scans confirmed a response that defied medical statistics. He is a living testament to what happens when you decide the impossible is just a data point to be updated. Watch his testimony below.",
+        videoItems: [
+          { tag: "Testimony · The Miracle", title: "Arif: Part 1 — The Recovery", desc: "Arif explains the shift from terminal prognosis to total recovery.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Interview · The Deep Dive", title: "Arif: Part 2 — The Process", desc: "An in-depth look at how the protocol worked for a Stage 4 brain cancer case.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
         reviewsEyebrow: "Testimony · Health",
         reviewsTitle: "Those Who Chose Life on Their Own Terms",
         reviews: [
-          { stars: "★★★★★", text: "After my diagnosis I felt completely powerless. The meditation protocol alongside my treatment gave me a sense of agency I hadn't experienced before. I genuinely believe the energetic work contributed to my recovery in ways my doctors couldn't explain but didn't dismiss.", name: "David L.", role: "Entrepreneur · Health Recovery" },
-          { stars: "★★★★★", text: "I came to eL with chronic burnout that had become physical—adrenal collapse, constant illness, no energy to function. The 90-day workbook rebuilt my baseline from the ground up. I have not been ill since completing the programme.", name: "Amara K.", role: "Executive Director · Kuala Lumpur" },
-          { stars: "★★★★★", text: "My autoimmune condition had been managed but never resolved. After the programme, my inflammation markers were the lowest they had been in six years. My rheumatologist asked what I had changed. I told him everything.", name: "Lina M.", role: "Creative Lead · Bali" },
+          { stars: "★★★★★", text: "The miracle even to the Impossible Stage 4 Brain cancer. Listen by yourself. The protocol was the difference between accepting a prognosis and deciding on a different future.", name: "Arif", role: "Miracle Survivor · Health Recovery" },
+          { stars: "★★★★★", text: "I came to eL with chronic burnout that had become physical—adrenal collapse, constant illness, no energy to function. The 90-day workbook rebuilt my baseline from the ground up.", name: "Amara K.", role: "Executive Director · Kuala Lumpur" },
+          { stars: "★★★★★", text: "My autoimmune condition had been managed but never resolved. After the programme, my inflammation markers were the lowest they had been in six years.", name: "Lina M.", role: "Creative Lead · Bali" },
         ],
         faqs: [
-          { q: "Is this a replacement for medical treatment?", a: "Absolutely not, and I will never suggest it is. The elemental manifestation and meditation protocol is a complement to conventional medical care—not a substitute. Every client pursuing this for health reasons is encouraged to continue all medical treatment in parallel. What we work on operates at a different layer: the energetic, psychological, and somatic dimensions that medical treatment does not directly address." },
-          { q: "Can this really make a difference for serious illness?", a: "There is substantial research on the relationship between mental state, nervous system regulation, and immune function. The protocol is not pseudoscience—it is a structured daily practice that creates measurable physiological effects. Reduced cortisol, improved sleep architecture, improved breath capacity, and a measurable shift in the client's relationship to their body and prognosis. Whether you call it manifestation or nervous system medicine, the effects are real." },
-          { q: "This feels beyond my budget when I am already paying for treatment.", a: "I understand. And I respect that deeply. The question I would ask is this: what is the cost of another year without the alignment work? Time is irreversible. If there is a dimension of your recovery that is not being addressed by conventional care—and there almost certainly is—the cost of ignoring it is not financial. The investment is calibrated to seriousness of the case, and I am willing to discuss structure for those in genuine health crisis." },
-          { q: "How do sessions work if I have limited energy or mobility?", a: "The protocol is designed entirely around your capacity. Some clients can do 45-minute sessions. Others begin with 8 minutes of breath and one written intention. The workbook is built for where you are—not where you think you should be. Energy builds through the practice, not before it." },
+          { q: "Is this a replacement for medical treatment?", a: "Absolutely not. The elemental protocol is a complement to conventional medical care. Arif and others continue all necessary medical treatment. What we work on is the energetic and biological 'software' that supports the healing process at a fundamental level." },
+          { q: "Can this really make a difference for terminal illness?", a: "Arif's case is the answer. When you align your nervous system and immune frequency through movement, breath, and identity work, you change the environment in which the body operates. The results speak for themselves." },
+          { q: "This feels beyond my budget right now.", a: "What is the cost of accepting an impossible prognosis? Time and life are irreversible. The investment is success-linked because I am fully committed to the outcome we aim for together." },
         ]
       },
 
@@ -1311,6 +1358,10 @@
           { stars: "★★★★★", text: "I came in thinking my problem was finding the right person. I left understanding I had been the wrong version of myself for any relationship to succeed. That realisation, and the work that followed it, changed my life.", name: "Daniel H.", role: "Architect · Melbourne" },
           { stars: "★★★★★", text: "My marriage had been deteriorating for three years. I chose this programme as a last attempt before accepting it was over. My spouse noticed a change in me before I told them I was working on anything. We are still together—and genuinely connected for the first time in years.", name: "Siti R.", role: "CEO · Jakarta" },
         ],
+        videoItems: [
+          { tag: "The Proof · Heart Realignment", title: "Recalibrating the Miraculous", desc: "Arif's story is evidence that terminal blocks can be dissolved. This same methodology is applied to deep relationship attachment wounds.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Interview · The Miracle", title: "Impossible Still Here", desc: "Arif's medical defiance documented. Proof that identity shifting can rebuild even the most broken dynamics.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
         faqs: [
           { q: "I've done therapy and still can't break the pattern. Why would this be different?", a: "Therapy is exceptional at building cognitive understanding of patterns. This work operates at the energetic and somatic level—the layer that cognitive understanding alone cannot dissolve. You can know exactly why you keep choosing unavailable partners and still choose another one tomorrow. The protocol interrupts the pattern at the level where it actually lives: in the body, the breath, and the energetic identity you are projecting into your relationships." },
           { q: "Does my partner need to be involved?", a: "No. In most cases, the most powerful transformation comes from the individual doing the work alone. When your energy changes, the dynamic changes—often before the other person understands why. If you are working on attracting a new relationship, the process is entirely internal. If you are working on an existing relationship, the changes you embody create the conditions for the relationship to shift." },
@@ -1325,6 +1376,11 @@
 
       // Update URL shorthand without reload
       window.history.replaceState({}, '', `?${focus}`);
+
+      // Update Floating WA Widget Message
+      const waBtn = document.getElementById('floatingWA');
+      const msg = encodeURIComponent(`I want to book for vip.elvisiongroup.com for ${focus}`);
+      waBtn.href = `https://wa.me/62895325633487?text=${msg}`;
 
       // Hide bar if a focus is selected (either via load param or click)
       const hasParamOrClicked = window.location.search.length > 1 || clicked;
@@ -1356,10 +1412,33 @@
       document.getElementById('colOutcomeTitle').textContent = d.colOutcomeTitle;
       document.getElementById('colOutcomeText').textContent = d.colOutcomeText;
 
-      // Video
-      document.getElementById('videoTag').textContent = d.videoTag;
-      document.getElementById('videoTitle').textContent = d.videoTitle;
-      document.getElementById('videoDesc').textContent = d.videoDesc;
+      // Video Section
+      const vContainer = document.getElementById('videoContainer');
+      const vItems = d.videoItems || [
+        { tag: d.videoTag, title: d.videoTitle, desc: d.videoDesc, src: "", poster: "" }
+      ];
+
+      vContainer.innerHTML = vItems.map(v => `
+        <div class="video-item" onclick="toggleVideo(this)">
+          <div class="video-item-top">
+            ${v.src ? `
+              <video poster="${v.poster}" playsinline>
+                <source src="${v.src}" type="video/mp4">
+              </video>
+              <div class="play-overlay">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            ` : `
+              <div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Placeholder</div>
+            `}
+          </div>
+          <div style="padding:1rem 0;">
+            <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">${v.tag}</p>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.3rem;">${v.title}</h4>
+            <p style="font-size:0.75rem;line-height:1.6;color:var(--muted);">${v.desc}</p>
+          </div>
+        </div>
+      `).join('');
 
       // Process price
       document.getElementById('processPriceTag').textContent = `USD ${d.priceRange} · 90 Days · Based on Problem Complexity`;
@@ -1389,6 +1468,21 @@
       // Add the universal budget FAQ if not wealth (already included)
       if (focus !== 'wealth') {
         // already in each focus's faqs
+      }
+    }
+
+    function toggleVideo(el) {
+      const vid = el.querySelector('video');
+      if (!vid) return;
+
+      if (vid.paused) {
+        vid.play();
+        el.classList.add('playing');
+        vid.controls = true;
+      } else {
+        vid.pause();
+        el.classList.remove('playing');
+        vid.controls = false;
       }
     }
 
