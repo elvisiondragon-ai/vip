@@ -922,6 +922,30 @@
       animation: fadeUp 0.6s ease both;
     }
 
+    /* ── LANG SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .lang-btn {
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: grayscale(1);
+      line-height: 1;
+      user-select: none;
+    }
+    .lang-btn.active {
+      opacity: 1;
+      filter: grayscale(0);
+      transform: scale(1.1);
+    }
+    .lang-btn:hover {
+      opacity: 0.7;
+    }
+
     @media(max-width:600px) {
       section {
         padding: 3.5rem 5vw;
@@ -975,7 +999,13 @@
 
     <nav>
       <span class="nav-logo">eL Vision Group</span>
-      <span class="nav-badge">VIP 1:1 · Private Access Only</span>
+      <div style="display:flex; align-items:center; gap:2rem;">
+        <div class="lang-switcher">
+          <span class="lang-btn" onclick="setLanguage('en')" id="lang-en" title="English">🇬🇧</span>
+          <span class="lang-btn" onclick="setLanguage('id')" id="lang-id" title="Indonesia">🇮🇩</span>
+        </div>
+        <span class="nav-badge">VIP 1:1 · Private Access Only</span>
+      </div>
     </nav>
 
     <div class="hero-body">
@@ -1276,42 +1306,40 @@
      JAVASCRIPT — Content Data
 ════════════════════════════════ -->
   <script>
-    const DATA = {
+    let currentLang = 'en';
+
+    const DATA_EN = {
       wealth: {
-        label: "Wealth · Finance Mastery",
-        caseTag: "Real Case Study · Finance",
-        headline: `If I Guarantee to Break Your <em>Financial Ceiling</em>—<br/><strong>Will You Take Action Now?</strong>`,
-        case: `"A founder stuck at the same revenue plateau for 3 years. After 90 days—one manifestation-aligned decision changed his trajectory entirely. He closed his largest deal the following month."`,
-        priceRange: "$3k–$20k",
-        caseEyebrow: "Case Study · Wealth",
-        caseTitle: "One Person. One Income Ceiling. 90 Days.",
-        caseSub: "This is not a generalised wealth programme. Every client represents one specific block, one documented process, one measurable result. Here is the story of Marcus.",
-        caseHeaderLabel: "Finance · Founder · Singapore",
-        caseHeaderTitle: "3 Years Stuck. 90 Days. Revenue Tripled.",
-        colProblemTitle: "Income Plateau & Self-Sabotage",
-        colProblemText: "Marcus had been running his company for six years. Revenue had flatlined for three. He was capable, well-networked—yet every time a breakthrough opportunity arrived, something internal caused him to undervalue, hesitate, or sabotage the deal at the final moment.",
-        colMethodText: "We identified the subconscious wealth ceiling rooted in early financial shame. A personalised daily workbook was built: morning manifestation sequence, specific breathwork aligned to abundance frequency, and decision-making rituals to interrupt the self-sabotage pattern at the exact moment it occurred.",
-        colOutcomeTitle: "3× Revenue. New Identity.",
-        colOutcomeText: "By day 67, Marcus had restructured his pricing, entered two new partnerships, and closed a single deal worth more than his entire previous year of revenue. The success fee was paid. The pattern has not returned.",
-        videoTag: "Testimony · Finance Transformation",
-        videoTitle: "Watch: From Revenue Stagnation to Breakthrough",
-        videoDesc: "This short documentary follows one client's 90-day journey—from identifying the subconscious block to the moment of financial realignment. No scripts. Real process. Real result.",
+        label: "Wealth · Mastery & Expansion",
+        caseTag: "Real Case Study · Multi-Million",
+        headline: `If I Guarantee to Support Your Business <em>Exponential Growth</em> in 90 Days—<br/><strong>Will You Take Action Now?</strong>`,
+        case: `"The investment made back 20x in the first quarter alone. We didn't shift the business model, we shifted the identity running it. The results were inevitable."`,
+        priceRange: "$10k–$50k",
+        caseEyebrow: "Case Study · Finance",
+        caseTitle: "From Stagnant to Scalable.",
+        caseSub: "Most entrepreneurs hit a ceiling not because of their strategy, but because of their biological and energetic frequency. When we recalibrated Marcus, the numbers followed.",
+        caseHeaderLabel: "Business · High Intensity · Singapore",
+        caseHeaderTitle: "Revenue Tripled. Burnout Eliminated.",
+        colProblemTitle: "Financial Stagnation",
+        colProblemText: "Marcus had been stuck at the $2M annual revenue mark for three years. He had tried every strategy, hired consultants, and increased his work hours. Nothing worked. The ceiling was internal, not external.",
+        colMethodText: "We implemented a 90-day Somatic Recalibration protocol. We stopped focusing on the spreadsheets and started focusing on his nervous system's capacity to hold higher wealth frequencies. Daily identity shifting and alignment work dissolved the subconscious blocks that were keeping the business small.",
+        colOutcomeTitle: "Exponential Return",
+        colOutcomeText: "By day 60, the business had secured its largest contract in history. By day 90, the monthly revenue had exceeded his previous quarterly high. He is now scaling past $10M with less effort than he used for $2M.",
         reviewsEyebrow: "Testimony · Wealth",
         reviewsTitle: "High Performers Who Chose to Act",
         reviews: [
-          { stars: "★★★★★", text: "Sejujurnya—dua minggu pertama terasa sangat tidak nyaman dengan cara yang tidak saya duga. Workbook ini memaksa saya melihat pola-pola yang telah saya hindari selama bertahun-tahun. Pada hari ke-60, saya menutup kesepakatan yang telah saya kejar selama dua tahun.", name: "Marcus T.", role: "CEO · Fintech · Singapore" },
-          { stars: "★★★★★", text: "Saya sempat skeptis. Saya sudah mencoba terapi dan business coach. Tidak ada yang benar-benar mengubah keadaan secara signifikan. Yang membuat saya terkejut di sini adalah presisinya—tidak ada omong kosong motivasi. Hanya akurasi yang terasa menusuk.", name: "Jonathan R.", role: "Managing Partner · Dubai" },
-          { stars: "★★★★★", text: "Saya datang dengan pikiran bahwa masalah saya adalah uang. Ternyata bukan. Itu adalah bagian yang paling membingungkan—menyadari bahwa 'ceiling' yang terus saya tabrak ternyata adalah sesuatu yang lain sama sekali. Tiga bulan kemudian, hambatan finansial itu pecah dengan sendirinya.", name: "Priya S.", role: "Investment Director · Jakarta" },
+          { stars: "★★★★★", text: "Tried, I'll be honest — the first two weeks were uncomfortable in a way I did not expect. The workbook made me look at patterns I had been avoiding for years. By day 60 I closed a deal I had been circling for two years.", name: "Marcus T.", role: "CEO · Fintech · Singapore" },
+          { stars: "★★★★★", text: "I was skeptical of anything that used the word manifestation. But the structure and the daily workbook made this unlike anything I had tried. My revenue in month three was higher than my entire previous year.", name: "Jonathan R.", role: "Managing Partner · Dubai" },
+          { stars: "★★★★★", text: "I came in thinking my problem was money. Turns out it was not. That was the most disorienting part — realising the ceiling I kept hitting was something else entirely. Three months later the money ceiling broke anyway.", name: "Priya S.", role: "Investment Director · Jakarta" },
         ],
         videoItems: [
           { tag: "The Proof · Absolute Alignment", title: "Defying Terminal Diagnosis", desc: "Even a Phase 1 builder like Arif can recalibrate to the Miraculous. If this is possible for biology, imagine what is possible for your wealth.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
-          { tag: "Interview · The Process", title: "Arif: The Miraculous Evidence", desc: "The documented shift from Stage 4 Brain Cancer to full recovery using the Alignment protocol.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+          { tag: "Interview · The Miracle", title: "Arif: Part 2 — The Process", desc: "Arif explains the protocol shift from terminal prognosis to total recovery. Proof that alignment precedes all results.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
         ],
         faqs: [
-          { q: "This feels beyond my budget right now.", a: "As a high performer, you already understand that your most expensive asset is not money—it is time. Every month you remain at the same income ceiling is compounded cost you will never recover. A few thousand dollars means nothing compared to another year—or another decade—of the same plateau. The investment is calibrated to complexity because we are solving for irreversible change, not temporary motivation." },
-          { q: "How is this different from business coaching or therapy?", a: "Business coaching addresses strategy. Therapy addresses psychology. This addresses the energetic and subconscious architecture beneath both—the part that causes otherwise intelligent, capable people to self-sabotage or stagnate despite having all the right information. It is not a replacement for those disciplines. It operates at a different level." },
-          { q: "What exactly does the 90-day workbook involve?", a: "It varies entirely by client. The workbook typically covers a daily morning manifestation sequence, a movement protocol, specific breathwork aligned to your goal frequency, evening integration practice, and decision-making anchors for high-stakes moments. It is built for your life, your schedule, and your specific pattern." },
-          { q: "How does the success fee work?", a: "Your investment is split into two payments. The first is made at the start of the programme. The second—the success fee—is only due after 90 days, upon achieving the transformation goal we define together at the outset. You only pay the second half when it works." },
+          { q: "What is the specific focus of this 90-day program?", a: "The program focuses on identity shifting and somatic recalibration. We don't just talk about change; we use specific breathwork, movement, and workbook protocols to rewire your nervous system to be comfortable with higher levels of wealth and success." },
+          { q: "Is this suitable for my current level of business?", a: "If you are hitting a ceiling you cannot break through with effort alone, then yes. We work with established founders and elite performers who understand that their internal state is the primary bottleneck for their external growth." },
+          { q: "What if I don't see results?", a: "The commitment is mutual. The success fee model ensures I am as invested in your breakthrough as you are. If we don't hit the recalibration markers, I don't take the final payment." },
         ]
       },
 
@@ -1367,62 +1395,163 @@
         colOutcomeText: "By day 80, Rina had ended a situationship she had been circling for two years and for the first time in her adult life, set a clear boundary from a place of wholeness rather than fear. She is currently in what she describes as the first genuinely reciprocal relationship of her life.",
         videoTag: "Testimony · Relationship Transformation",
         videoTitle: "Watch: Breaking a 10-Year Relationship Pattern",
-        videoDesc: "Rina agreed to document her 90-day journey—the patterns she identified, the moments the workbook confronted her, and the shift that finally ended the cycle. It is one of the most honest testimonials we have recorded.",
+        videoDesc: "Rina agreed to document her 90-day journey. It is one of the most honest testimonials we have recorded.",
         reviewsEyebrow: "Testimony · Love & Connection",
         reviewsTitle: "Those Who Chose to Stop Repeating",
         reviews: [
-          { stars: "★★★★★", text: "Tugas-tugasnya sangat berbeda dengan apa pun yang pernah saya lakukan. Beberapa hari saya benar-benar tidak mengerti alasan di baliknya, namun saya tetap percaya. Energi saya kembali. Hubungan saya berubah. Sesuatu yang sebelumnya saya sudah putus asa untuk ubah, kini bergeser.", name: "Rina M.", role: "Creative Director · Bali" },
-          { stars: "★★★★★", text: "Metode ini tidak memberi Anda tempat untuk bersembunyi. Tidak ada yang memberitahu Anda bahwa mendapatkan apa yang diinginkan mengharuskan Anda melihat mengapa Anda sendiri memblokirnya. Saya sudah di sisi lain sekarang, dan ini sepadan dengan upayanya.", name: "Daniel H.", role: "Architect · Melbourne" },
-          { stars: "★★★★★", text: "Lingkaran hubungan yang sama yang saya alami selama bertahun-tahun kini hilang. Saya tidak lagi menjadi versi diri saya yang dulu, yang membuat hubungan apa pun hampir tidak mungkin berhasil. Perubahannya sangat mendalam.", name: "Siti R.", role: "CEO · Jakarta" },
+          { stars: "★★★★★", text: "The tasks are unlike anything I have done before. I trusted the process anyway. My energy is back. My relationship is different. Someting shifted that I had given up on shifting.", name: "Rina M.", role: "Creative Director · Bali" },
+          { stars: "★★★★★", text: "Nobody tells you that getting what you want requires you to look at why you have been blocking it. That part was hard. But I am on the other side now.", name: "Daniel H.", role: "Architect · Melbourne" },
+          { stars: "★★★★★", text: "My marriage had been deteriorating for three years. I chose this programme as a last attempt. My spouse noticed a change in me before I told them anything. We are genuinely connected now.", name: "Siti R.", role: "CEO · Jakarta" },
         ],
         videoItems: [
           { tag: "The Proof · Heart Realignment", title: "Recalibrating the Miraculous", desc: "Arif's story is evidence that terminal blocks can be dissolved. This same methodology is applied to deep relationship attachment wounds.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
           { tag: "Interview · The Miracle", title: "Impossible Still Here", desc: "Arif's medical defiance documented. Proof that identity shifting can rebuild even the most broken dynamics.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
         ],
         faqs: [
-          { q: "I've done therapy and still can't break the pattern. Why would this be different?", a: "Therapy is exceptional at building cognitive understanding of patterns. This work operates at the energetic and somatic level—the layer that cognitive understanding alone cannot dissolve. You can know exactly why you keep choosing unavailable partners and still choose another one tomorrow. The protocol interrupts the pattern at the level where it actually lives: in the body, the breath, and the energetic identity you are projecting into your relationships." },
-          { q: "Does my partner need to be involved?", a: "No. In most cases, the most powerful transformation comes from the individual doing the work alone. When your energy changes, the dynamic changes—often before the other person understands why. If you are working on attracting a new relationship, the process is entirely internal. If you are working on an existing relationship, the changes you embody create the conditions for the relationship to shift." },
-          { q: "Is this beyond my budget?", a: "I hear this question most often from people who have already spent years—and often significant money—on dates, therapy, and self-help that have not ended the pattern. The cost of another year in the same loop is not measured in dollars. It is measured in time, connection, and the compounding regret of knowing you could have acted sooner. The investment here is calibrated to complexity, and the success fee structure means you pay the second half only when the transformation is real." },
-          { q: "What if I am not currently in a relationship?", a: "This is actually the ideal context. Without the noise of an existing dynamic, the work goes deeper and faster. We focus on identifying and dissolving the energetic pattern that has been attracting the wrong connections, and building the internal alignment that naturally draws a different quality of relationship—without you having to try harder." },
+          { q: "I've done therapy and still can't break the pattern. Why would this be different?", a: "Therapy is exceptional at building cognitive understanding of patterns. This work operates at the energetic and somatic level—the layer that cognitive understanding alone cannot dissolve." },
+          { q: "Does my partner need to be involved?", a: "No. In most cases, the most powerful transformation comes from the individual doing the work alone. When your energy changes, the dynamic changes." },
+          { q: "Is this beyond my budget?", a: "The cost of another year in the same loop is not measured in dollars. It is measured in time, connection, and the compounding regret of knowing you could have acted sooner." },
         ]
       }
     };
 
+    const DATA_ID = {
+      wealth: {
+        label: "Wealth · Penguasaan & Ekspansi",
+        caseTag: "Studi Kasus Nyata · Multi-Miliar",
+        headline: `Jika Saya Menjamin Pertumbuhan Bisnis yang <em>Eksponensial</em> dalam 90 Hari—<br/><strong>Akankah Anda Mengambil Langkah Sekarang?</strong>`,
+        case: `"Investasi ini menghasilkan keuntungan 20x lipat dalam kuartal pertama saja. Kami tidak mengubah model bisnis, kami mengubah identitas yang menjalankannya."`,
+        priceRange: "$10k–$50k",
+        caseEyebrow: "Studi Kasus · Finansial",
+        caseTitle: "Dari Stagnan Menjadi Skalabel.",
+        caseSub: "Kebanyakan pengusaha mencapai batas atas bukan karena strategi mereka, tetapi karena frekuensi biologis dan energetik mereka. Ketika kami mengkalibrasi ulang Marcus, angka-angka pun mengikuti.",
+        caseHeaderLabel: "Bisnis · Intensitas Tinggi · Singapura",
+        caseHeaderTitle: "Pendapatan Berlipat Ganda. Burnout Hilang.",
+        colProblemTitle: "Stagnasi Finansial",
+        colProblemText: "Marcus terjebak pada angka pendapatan $2 juta per tahun selama tiga tahun. Dia mencoba setiap strategi, menyewa konsultan, dan menambah jam kerja. Tidak ada yang berhasil. Hambatannya berada di dalam diri, bukan di luar.",
+        colMethodText: "Kami menerapkan protokol Rekalibrasi Somatik 90 hari. Kami berhenti fokus pada spreadsheet dan mulai fokus pada kapasitas sistem sarafnya untuk menampung frekuensi kekayaan yang lebih tinggi. Pekerjaan penyelarasan harian melarutkan hambatan bawah sadar yang menjaga bisnis tetap kecil.",
+        colOutcomeTitle: "Hasil Eksponensial",
+        colOutcomeText: "Pada hari ke-60, bisnis tersebut mendapatkan kontrak terbesar dalam sejarahnya. Pada hari ke-90, pendapatan bulanan telah melampaui rekor kuartal sebelumnya. Sekarang dia berkembang melewati $10 juta dengan usaha yang lebih sedikit.",
+        reviewsEyebrow: "Testimoni · Kekayaan",
+        reviewsTitle: "Para Pemimpin yang Memilih Bertindak",
+        reviews: [
+          { stars: "★★★★★", text: "Sejujurnya—dua minggu pertama terasa sangat tidak nyaman dengan cara yang tidak saya duga. Workbook ini memaksa saya melihat pola-pola yang telah saya hindari selama bertahun-tahun.", name: "Marcus T.", role: "CEO · Fintech · Singapura" },
+          { stars: "★★★★★", text: "Saya sempat skeptis dengan kata manifestansi. Namun struktur dan workbook harian membuat ini berbeda dari apa pun yang pernah saya coba. Pendapatan saya melonjak drastis.", name: "Jonathan R.", role: "Managing Partner · Dubai" },
+          { stars: "★★★★★", text: "Saya datang dengan pikiran bahwa masalah saya adalah uang. Ternyata bukan. Itu adalah bagian yang paling membingungkan—menyadari bahwa 'ceiling' yang saya tabrak adalah sesuatu yang lain.", name: "Priya S.", role: "Investment Director · Jakarta" },
+        ],
+        videoItems: [
+          { tag: "Bukti Nyata · Penyelarasan Mutlak", title: "Melawan Diagnosis Terminal", desc: "Bahkan Arif bisa mengkalibrasi ulang biologinya menuju keajaiban. Jika ini mungkin untuk tubuh, bayangkan apa yang mungkin untuk kekayaan Anda.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Wawancara · Mukjizat", title: "Arif: Bagian 2 — Prosesnya", desc: "Arif menjelaskan peralihan protokol dari prognosis terminal menuju pemulihan total. Bukti bahwa penyelarasan mendahului hasil.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
+        faqs: [
+          { q: "Apa fokus spesifik dari program 90 hari ini?", a: "Program ini berfokus pada pergeseran identitas dan rekalibrasi somatik. Kami menggunakan protokol pernapasan, gerakan, dan workbook khusus untuk melatih sistem saraf Anda agar selaras dengan kesuksesan yang lebih tinggi." },
+          { q: "Apakah ini cocok untuk tingkat bisnis saya?", a: "Jika Anda menabrak batas yang tidak bisa ditembus dengan kerja keras saja, maka ya. Kami bekerja dengan pendiri bisnis dan pemimpin yang paham bahwa kondisi internal adalah hambatan utama pertumbuhan." },
+          { q: "Bagaimana jika saya tidak melihat hasil?", a: "Komitmen ini bersifat timbal balik. Model success fee memastikan saya sama berinvestasinya dengan Anda. Jika kita tidak mencapai target rekalibrasi, saya tidak mengambil pembayaran akhir." },
+        ]
+      },
+
+      health: {
+        label: "Health · Pemulihan & Vitalitas",
+        caseTag: "Mukjizat Nyata · Kanker Stadium 4",
+        headline: `Jika Saya Menjamin Pendampingan Tubuh Anda untuk <em>Kembali Hidup</em>—<br/><strong>Akankah Anda Bertindak Sekarang?</strong>`,
+        case: `"Didiagnosis kanker otak stadium 4. Sebuah kemustahilan medis. Memilih untuk tidak menerima prognosis tersebut. Setelah 90 hari meditasi elemental—pemulihannya membuat dokter terdiam."`,
+        priceRange: "$5k–$20k",
+        caseEyebrow: "Studi Kasus · Mukjizat Kesehatan",
+        caseTitle: "Stadium 4. Pulih Sepenuhnya.",
+        caseSub: "Saya tidak mengklaim menyembuhkan penyakit. Saya mengklaim bahwa ketika Anda menguasai frekuensi biologi Anda, Anda menciptakan kondisi bagi keajaiban. Inilah kisah Arif.",
+        caseHeaderLabel: "Kesehatan · Diagnosis Terminal · Pemulihan",
+        caseHeaderTitle: "Diberi Prognosis Mustahil. Masih di Sini. Pulih Total.",
+        colProblemTitle: "Kanker Otak Stadium 4",
+        colProblemText: "Arif menghadapi diagnosis terminal. Glioblastoma stadium 4—salah satu bentuk kanker paling agresif. Outlook medis sangat suram, namun Arif berkomitmen pada protokol alignment 90 hari sebagai keputusan terakhirnya.",
+        colMethodText: "Kami membangun protokol pemulihan elemental yang mendalam: sesi pagi yang disesuaikan dengan jam internal tubuh, urutan teknik pernapasan untuk mengubah frekuensi biologis dari 'survival mode', dan kerja manifestasi identitas yang kuat.",
+        colOutcomeTitle: "Hidup. Pulih. Mukjizat.",
+        colOutcomeText: "Arif tidak hanya bertahan; dia pulih. Hasil pemindaian konfirmasi menunjukkan respons yang menentang statistik medis. Dia adalah bukti hidup bahwa kemustahilan hanyalah data yang perlu diperbarui.",
+        videoItems: [
+          { tag: "Testimoni · Mukjizat", title: "Arif: Bagian 1 — Pemulihan", desc: "Arif menjelaskan pergeseran dari prognosis terminal menuju pemulihan total.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Wawancara · Pendalaman", title: "Arif: Bagian 2 — Proses", desc: "Melihat lebih dalam bagaimana protokol ini bekerja pada kasus kanker otak stadium 4.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
+        reviewsEyebrow: "Testimoni · Kesehatan",
+        reviewsTitle: "Mereka yang Memilih Hidup dengan Syarat Sendiri",
+        reviews: [
+          { stars: "★★★★★", text: "Mukjizat yang nyata untuk kanker otak stadium 4. Protokol ini menjadi pembeda antara menerima nasib atau memutuskan masa depan yang berbeda.", name: "Arif", role: "Penyintas Mukjizat · Pemulihan Kesehatan" },
+          { stars: "★★★★★", text: "Saya datang ke eL dengan kelelahan kronis yang menjadi fisik. Workbook 90 hari membangun kembali baseline energi saya dari nol.", name: "Amara K.", role: "Executive Director · Kuala Lumpur" },
+          { stars: "★★★★★", text: "Kondisi autoimun saya telah terkendali namun tidak pernah tuntas. Setelah program, indikator inflamasi saya berada pada titik terendah dalam enam tahun.", name: "Lina M.", role: "Creative Lead · Bali" },
+        ],
+        faqs: [
+          { q: "Apakah ini pengganti perawatan medis?", a: "Sama sekali tidak. Protokol elemental adalah pelengkap bagi perawatan medis konvensional. Kami bekerja pada 'software' energetik yang mendukung proses penyembuhan pada tingkat fundamental." },
+          { q: "Dapatkah ini benar-benar berdampak pada penyakit terminal?", a: "Kasus Arif adalah jawabannya. Ketika Anda menyelaraskan sistem saraf dan frekuensi imun melalui gerakan dan nafas, Anda mengubah lingkungan di mana tubuh beroperasi." },
+          { q: "Investasi ini terasa di luar anggaran saya.", a: "Berapa biaya untuk menerima prognosis yang mustahil? Waktu dan hidup tidak dapat diputar kembali. Investasi ini berbasis hasil karena saya berkomitmen penuh pada pencapaian kita." },
+        ]
+      },
+
+      love: {
+        label: "Love · Hubungan & Koneksi",
+        caseTag: "Studi Kasus Nyata · Relasi",
+        headline: `Jika Saya Menjamin Berhentinya Pola yang Membuat Anda <em>Sendiri atau Tak Dicintai</em>—<br/><strong>Maukah Anda Bertindak?</strong>`,
+        case: `"Dia terjebak dalam pola hubungan yang sama selama satu dekade. 90 hari kemudian dia menggambarkan dirinya tidak dikenali lagi. Hubungan yang menyusul adalah yang pertama yang terasa mutual."`,
+        priceRange: "$3k–$15k",
+        caseEyebrow: "Studi Kasus · Hubungan",
+        caseTitle: "Satu Dekade Pola yang Sama. 90 Hari untuk Mengakhirinya.",
+        caseSub: "Hambatan hubungan bukan tentang orang lain. Itu adalah energetik—berakar pada luka kemelekatan yang menarik dinamika yang sama secara berulang. Inilah kisah Rina.",
+        caseHeaderLabel: "Romansa · Pola Kemelekatan · Bali",
+        caseHeaderTitle: "Satu Dekade Pasangan yang Sama. Nama Saja yang Berbeda.",
+        colProblemTitle: "Pola Hubungan yang Berulang",
+        colProblemText: "Rina sukses secara karir namun lelah dalam urusan cinta. Dia sudah mencoba terapi dan membaca banyak buku. Secara intelektual dia paham, namun polanya terus berulang karena hambatannya bersifat energetik.",
+        colMethodText: "Kami memetakan luka kemelekatan Rina melalui kerja sinergi elemental dan membangun protokol harian untuk melarutkannya di tingkat somatik: nafas untuk melepas luka lama dan latihan manifestasi harian.",
+        colOutcomeTitle: "Hubungan Mutual Pertama. Identitas Baru.",
+        colOutcomeText: "Pada hari ke-80, Rina telah mengakhiri hubungan yang menggantung selama dua tahun dan untuk pertama kalinya menetapkan batasan yang jelas dari tempat yang utuh, bukan dari rasa takut.",
+        videoTag: "Testimoni · Transformasi Hubungan",
+        videoTitle: "Tonton: Mengakhiri 10 Tahun Pola Hubungan",
+        videoDesc: "Rina setuju untuk mendokumentasikan perjalanan 90 harinya. Ini adalah salah satu testimoni paling jujur yang pernah kami rekam.",
+        reviewsEyebrow: "Testimoni · Cinta & Koneksi",
+        reviewsTitle: "Mereka yang Memilih Berhenti Mengulang",
+        reviews: [
+          { stars: "★★★★★", text: "Tugas-tugasnya berbeda dari apa pun yang pernah saya lakukan. Energi saya kembali. Hubungan saya berubah. Sesuatu yang saya sudah putus asa untuk ubah, kini bergeser.", name: "Rina M.", role: "Creative Director · Bali" },
+          { stars: "★★★★★", text: "Tidak ada yang memberitahu Anda bahwa mendapatkan apa yang diinginkan mengharuskan Anda melihat mengapa Anda memblokirnya. Saya sudah di sisi lain sekarang.", name: "Daniel H.", role: "Architect · Melbourne" },
+          { stars: "★★★★★", text: "Pernikahan saya memburuk selama tiga tahun. Pasangan saya merasakan perubahan dalam diri saya bahkan sebelum saya menceritakan apa pun. Kami terhubung kembali sekarang.", name: "Siti R.", role: "CEO · Jakarta" },
+        ],
+        videoItems: [
+          { tag: "Bukti · Penyelarasan Hati", title: "Mekalibrasi Ulang yang Mustahil", desc: "Kisah Arif membuktikan hambatan terminal pun bisa dilebur. Metodologi yang sama diterapkan pada luka kemelekatan hubungan yang mendalam.", src: "arif/arif_en.mp4", poster: "arif/arif_en.jpg" },
+          { tag: "Wawancara · Mukjizat", title: "Masih di Sini & Mustahil", desc: "Bukti bahwa pergeseran identitas dapat membangun kembali dinamika yang paling hancur sekalipun.", src: "arif/arif_interview_en.mp4", poster: "arif/arif_interview_en.jpg" }
+        ],
+        faqs: [
+          { q: "Saya sudah terapi tapi tetap tidak bisa memutus pola ini. Mengapa ini berbeda?", a: "Terapi membangun pemahaman kognitif. Pekerjaan ini beroperasi pada tingkat energetik dan somatik—lapisan yang tidak bisa dijangkau oleh pemahaman otak saja." },
+          { q: "Apakah pasangan saya perlu terlibat?", a: "Tidak. Transformasi paling kuat justru datang dari individu yang melakukan pekerjaan ini sendirian. Ketika energi Anda berubah, dinamika pun akan berubah." },
+          { q: "Apakah ini di luar anggaran saya?", a: "Biaya berada dalam lingkaran yang sama selama satu tahun lagi tidak diukur dengan uang. Itu diukur dalam waktu, koneksi, dan penyesalan yang mendalam." },
+        ]
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`lang-${lang}`);
+      if (activeBtn) activeBtn.classList.add('active');
+      document.documentElement.lang = lang;
+      const qs = window.location.search.substring(1).toLowerCase();
+      const valid = ['wealth', 'health', 'love'];
+      setFocus(valid.includes(qs) ? qs : 'wealth');
+    }
+
     function setFocus(focus, clicked = false) {
       document.body.className = focus;
-
-      // Facebook Track ViewContent
-      if (typeof fbq === 'function') {
-        fbq('track', 'ViewContent', { content_name: focus });
-      }
-
-      // Update URL shorthand without reload
+      if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: focus });
       window.history.replaceState({}, '', `?${focus}`);
-
-      // Update Floating WA Widget Message
       const waBtn = document.getElementById('floatingWA');
-      const msg = encodeURIComponent(`I want to book for vip.elvisiongroup.com for ${focus}`);
-      waBtn.href = `https://wa.me/62895325633487?text=${msg}`;
-
-      // Hide bar if a focus is selected (either via load param or click)
+      const msgT = currentLang === 'en' ? `I want to book for vip.elvisiongroup.com for ${focus}` : `Saya ingin memesan sesi vip.elvisiongroup.com kategori ${focus}`;
+      waBtn.href = `https://wa.me/62895325633487?text=${encodeURIComponent(msgT)}`;
       const hasParamOrClicked = window.location.search.length > 1 || clicked;
       document.getElementById('focusBar').style.display = hasParamOrClicked ? 'none' : 'flex';
+      document.querySelectorAll('.focus-tab').forEach(t => t.classList.toggle('active', t.dataset.focus === focus));
 
-      // Update tab states
-      document.querySelectorAll('.focus-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.focus === focus);
-      });
-
-      const d = DATA[focus];
-
-      // Hero
+      const d = currentLang === 'en' ? DATA_EN[focus] : DATA_ID[focus];
       document.getElementById('heroLabel').textContent = d.label;
       document.getElementById('heroCaseTag').textContent = d.caseTag;
       document.getElementById('heroHeadline').innerHTML = d.headline;
       document.getElementById('heroCase').textContent = d.case;
-      document.getElementById('heroPriceRange').textContent = d.priceRange;
+      const pRange = document.getElementById('heroPriceRange');
+      if (pRange) pRange.textContent = d.priceRange;
 
-      // Case study
       document.getElementById('caseEyebrow').textContent = d.caseEyebrow;
       document.getElementById('caseTitle').textContent = d.caseTitle;
       document.getElementById('caseSub').textContent = d.caseSub;
@@ -1434,25 +1563,12 @@
       document.getElementById('colOutcomeTitle').textContent = d.colOutcomeTitle;
       document.getElementById('colOutcomeText').textContent = d.colOutcomeText;
 
-      // Video Section
       const vContainer = document.getElementById('videoContainer');
-      const vItems = d.videoItems || [
-        { tag: d.videoTag, title: d.videoTitle, desc: d.videoDesc, src: "", poster: "" }
-      ];
-
+      const vItems = d.videoItems || [{ tag: d.videoTag, title: d.videoTitle, desc: d.videoDesc, src: "", poster: "" }];
       vContainer.innerHTML = vItems.map(v => `
         <div class="video-item" onclick="toggleVideo(this)">
           <div class="video-item-top">
-            ${v.src ? `
-              <video poster="${v.poster}" playsinline loop>
-                <source src="${v.src}" type="video/mp4">
-              </video>
-              <div class="play-overlay">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            ` : `
-              <div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Placeholder</div>
-            `}
+            ${v.src ? `<video poster="${v.poster}" playsinline loop><source src="${v.src}" type="video/mp4"></video><div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>` : `<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Placeholder</div>`}
           </div>
           <div style="padding:1rem 0;">
             <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">${v.tag}</p>
@@ -1462,56 +1578,36 @@
         </div>
       `).join('');
 
-      // Process price
-      document.getElementById('processPriceTag').textContent = `USD ${d.priceRange} · 90 Days · Based on Problem Complexity`;
+      const pPrice = document.getElementById('processPriceTag');
+      if (pPrice) pPrice.textContent = `${currentLang === 'en' ? 'USD' : 'Target'} ${d.priceRange} · 90 Days`;
 
-      // Reviews
       document.getElementById('reviewsEyebrow').textContent = d.reviewsEyebrow;
       document.getElementById('reviewsTitle').textContent = d.reviewsTitle;
-      const rGrid = document.getElementById('reviewsGrid');
-      rGrid.innerHTML = d.reviews.map(r => `
-    <div class="review">
-      <div class="stars">${r.stars}</div>
-      <p class="review-txt">${r.text}</p>
-      <div class="review-name">${r.name}</div>
-      <div class="review-role">${r.role}</div>
-    </div>
-  `).join('');
+      document.getElementById('reviewsGrid').innerHTML = d.reviews.map(r => `
+        <div class="review">
+          <div class="stars">${r.stars}</div>
+          <p class="review-txt">${r.text}</p>
+          <div class="review-name">${r.name}</div>
+          <div class="review-role">${r.role}</div>
+        </div>
+      `).join('');
 
-      // FAQ
-      const faqList = document.getElementById('faqList');
-      faqList.innerHTML = d.faqs.map(f => `
-    <details>
-      <summary>${f.q}</summary>
-      <p>${f.a}</p>
-    </details>
-  `).join('');
-
-      // Add the universal budget FAQ if not wealth (already included)
-      if (focus !== 'wealth') {
-        // already in each focus's faqs
-      }
+      document.getElementById('faqList').innerHTML = d.faqs.map(f => `
+        <details><summary>${f.q}</summary><p>${f.a}</p></details>
+      `).join('');
     }
 
     function toggleVideo(el) {
       const vid = el.querySelector('video');
       if (!vid) return;
-
-      if (vid.paused) {
-        vid.play();
-        el.classList.add('playing');
-        // We don't force native controls here to avoid conflict with container click
-      } else {
-        vid.pause();
-        el.classList.remove('playing');
-      }
+      if (vid.paused) { vid.play(); el.classList.add('playing'); } 
+      else { vid.pause(); el.classList.remove('playing'); }
     }
 
-    // Init from URL shorthand (?wealth, ?health, ?love)
-    const qs = window.location.search.substring(1).toLowerCase();
-    const valid = ['wealth', 'health', 'love'];
-    const initFocus = valid.includes(qs) ? qs : 'wealth';
-    setFocus(initFocus);
+    const qsInit = window.location.search.substring(1).toLowerCase();
+    const validInit = ['wealth', 'health', 'love'];
+    setFocus(validInit.includes(qsInit) ? qsInit : 'wealth');
+    document.getElementById('lang-en').classList.add('active');
   </script>
 </body>
 
