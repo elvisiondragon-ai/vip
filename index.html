@@ -1422,7 +1422,7 @@
         <div class="video-item" onclick="toggleVideo(this)">
           <div class="video-item-top">
             ${v.src ? `
-              <video poster="${v.poster}" playsinline>
+              <video poster="${v.poster}" playsinline loop>
                 <source src="${v.src}" type="video/mp4">
               </video>
               <div class="play-overlay">
@@ -1478,11 +1478,10 @@
       if (vid.paused) {
         vid.play();
         el.classList.add('playing');
-        vid.controls = true;
+        // We don't force native controls here to avoid conflict with container click
       } else {
         vid.pause();
         el.classList.remove('playing');
-        vid.controls = false;
       }
     }
 
