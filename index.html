@@ -1234,6 +1234,12 @@
     <div class="reviews" id="reviewsGrid">
       <!-- Injected by JS -->
     </div>
+    <!-- ── MORE TESTIMONIALS (ID ONLY) ── -->
+    <div id="idTestimonyBlock" style="display:none; text-align:center; margin-top:3.5rem;">
+      <a href="https://app.elvisiongroup.com/testimony" target="_blank" class="btn-ghost" style="padding: 1.2rem 3rem;">
+        Lihat Testimoni Section
+      </a>
+    </div>
   </section>
 
   <hr class="div" />
@@ -1595,6 +1601,12 @@
       document.getElementById('faqList').innerHTML = d.faqs.map(f => `
         <details><summary>${f.q}</summary><p>${f.a}</p></details>
       `).join('');
+
+      // Toggle ID Testimony Button
+      const idTestBtn = document.getElementById('idTestimonyBlock');
+      if (idTestBtn) {
+        idTestBtn.style.display = currentLang === 'id' ? 'block' : 'none';
+      }
     }
 
     function toggleVideo(el) {
