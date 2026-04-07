@@ -1534,15 +1534,17 @@
       const activeBtn = document.getElementById(`lang-${lang}`);
       if (activeBtn) activeBtn.classList.add('active');
       document.documentElement.lang = lang;
+      const path = window.location.pathname.substring(1).toLowerCase();
       const qs = window.location.search.substring(1).toLowerCase();
       const valid = ['wealth', 'health', 'love'];
-      setFocus(valid.includes(qs) ? qs : 'wealth');
+      const activeFocus = valid.find(f => path.includes(f) || qs.includes(f)) || 'wealth';
+      setFocus(activeFocus);
     }
-
+    
     function setFocus(focus, clicked = false) {
       document.body.className = focus;
       if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: focus });
-      window.history.replaceState({}, '', `?${focus}`);
+      window.history.replaceState({}, '', `/${focus}${window.location.search}`);
       const waBtn = document.getElementById('floatingWA');
       const msgT = currentLang === 'en' ? `I want to book for vip.elvisiongroup.com for ${focus}` : `Saya ingin memesan sesi vip.elvisiongroup.com kategori ${focus}`;
       waBtn.href = `https://wa.me/62895325633487?text=${encodeURIComponent(msgT)}`;
@@ -1616,10 +1618,19 @@
       else { vid.pause(); el.classList.remove('playing'); }
     }
 
-    const qsInit = window.location.search.substring(1).toLowerCase();
-    const validInit = ['wealth', 'health', 'love'];
-    setFocus(validInit.includes(qsInit) ? qsInit : 'wealth');
-    document.getElementById('lang-en').classList.add('active');
+    // --- INITIALIZATION ---
+    function init() {
+      const qs = window.location.search.substring(1).toLowerCase();
+      
+      // Detection: Language (?id)
+      if (qs.includes('id')) {
+        setLanguage('id');
+      } else {
+        setLanguage('en');
+      }
+    }
+    
+    init();
   </script>
 </body>
 
