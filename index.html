@@ -1255,6 +1255,12 @@
     </div>
   </section>
 
+  <section id="addonBlock" style="display:none; background:#0a0a0a; border:1px solid rgba(255,255,255,0.08); border-radius:1rem; margin:2rem auto; max-width:860px; padding:3rem 2.5rem;">
+    <p class="eyebrow" id="addonEyebrow"></p>
+    <h2 class="sec-title" id="addonTitle" style="margin-bottom:1.2rem;"></h2>
+    <p id="addonBody" style="color:rgba(255,255,255,0.7); font-size:1.05rem; line-height:1.9; max-width:700px;"></p>
+  </section>
+
   <!-- ════════════════════════════════
      CONTACT
 ════════════════════════════════ -->
@@ -1346,7 +1352,12 @@
           { q: "What is the specific focus of this 90-day program?", a: "The program focuses on identity shifting and somatic recalibration. We don't just talk about change; we use specific breathwork, movement, and workbook protocols to rewire your nervous system to be comfortable with higher levels of wealth and success." },
           { q: "Is this suitable for my current level of business?", a: "If you are hitting a ceiling you cannot break through with effort alone, then yes. We work with established founders and elite performers who understand that their internal state is the primary bottleneck for their external growth." },
           { q: "What if I don't see results?", a: "The commitment is mutual. The success fee model ensures I am as invested in your breakthrough as you are. If we don't hit the recalibration markers, I don't take the final payment." },
-        ]
+        ],
+        addon: {
+          eyebrow: "Add-On · Done For You",
+          title: "We Also Build Your Entire Marketing Machine.",
+          body: "For Wealth clients, we offer a full client acquisition setup so you never have to think about marketing again. This includes 100 ads per month created for your business, full ad copy written and tested, Meta Ads setup with pixel tracking, complete sales automation so leads are followed up without you lifting a finger, and a dedicated marketing team ready from day one. You focus on delivering. We handle everything that brings clients to you."
+        }
       },
 
       health: {
@@ -1453,7 +1464,12 @@
           { q: "Apa fokus spesifik dari program 90 hari ini?", a: "Program ini berfokus pada pergeseran identitas dan rekalibrasi somatik. Kami menggunakan protokol pernapasan, gerakan, dan workbook khusus untuk melatih sistem saraf Anda agar selaras dengan kesuksesan yang lebih tinggi." },
           { q: "Apakah ini cocok untuk tingkat bisnis saya?", a: "Jika Anda menabrak batas yang tidak bisa ditembus dengan kerja keras saja, maka ya. Kami bekerja dengan pendiri bisnis dan pemimpin yang paham bahwa kondisi internal adalah hambatan utama pertumbuhan." },
           { q: "Bagaimana jika saya tidak melihat hasil?", a: "Komitmen ini bersifat timbal balik. Model success fee memastikan saya sama berinvestasinya dengan Anda. Jika kita tidak mencapai target rekalibrasi, saya tidak mengambil pembayaran akhir." },
-        ]
+        ],
+        addon: {
+          eyebrow: "Add-On · Selesai Untuk Anda",
+          title: "Kami Juga Membangun Seluruh Mesin Pemasaran Anda.",
+          body: "Untuk klien Wealth, kami menawarkan setup akuisisi klien lengkap sehingga Anda tidak perlu memikirkan pemasaran lagi. Ini mencakup 100 iklan per bulan yang dibuat untuk bisnis Anda, copy iklan yang ditulis dan diuji secara lengkap, setup Meta Ads dengan pixel tracking, otomatisasi penjualan penuh agar prospek ditindaklanjuti tanpa Anda harus melakukan apa pun, dan tim pemasaran siap dari hari pertama. Anda fokus pada penyampaian. Kami menangani semua yang membawa klien kepada Anda."
+        }
       },
 
       health: {
@@ -1603,6 +1619,16 @@
       document.getElementById('faqList').innerHTML = d.faqs.map(f => `
         <details><summary>${f.q}</summary><p>${f.a}</p></details>
       `).join('');
+
+      const addonBlock = document.getElementById('addonBlock');
+      if (d.addon) {
+        document.getElementById('addonEyebrow').textContent = d.addon.eyebrow;
+        document.getElementById('addonTitle').textContent = d.addon.title;
+        document.getElementById('addonBody').textContent = d.addon.body;
+        addonBlock.style.display = 'block';
+      } else {
+        addonBlock.style.display = 'none';
+      }
 
       // Toggle ID Testimony Button
       const idTestBtn = document.getElementById('idTestimonyBlock');
