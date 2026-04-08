@@ -1544,9 +1544,9 @@
     function setFocus(focus, clicked = false) {
       document.body.className = focus;
       if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: focus });
-      window.history.replaceState({}, '', `/${focus}${window.location.search}`);
+      window.history.replaceState({}, '', `/${focus}`);
       const waBtn = document.getElementById('floatingWA');
-      const msgT = currentLang === 'en' ? `I want to book for vip.elvisiongroup.com for ${focus}` : `Saya ingin memesan sesi vip.elvisiongroup.com kategori ${focus}`;
+      const msgT = currentLang === 'en' ? `I would like to book a call for ${focus.charAt(0).toUpperCase() + focus.slice(1)} VIP https://vip.elvisiongroup.com/${focus}` : `Saya ingin memesan sesi ${focus.charAt(0).toUpperCase() + focus.slice(1)} VIP https://vip.elvisiongroup.com/${focus}`;
       waBtn.href = `https://wa.me/62895325633487?text=${encodeURIComponent(msgT)}`;
       const hasParamOrClicked = window.location.search.length > 1 || clicked;
       document.getElementById('focusBar').style.display = hasParamOrClicked ? 'none' : 'flex';
